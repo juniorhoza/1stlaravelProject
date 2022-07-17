@@ -7,11 +7,11 @@ use App\Models\productsImage;
 
 use App\Models\products as prod;
 
+
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+
 use Intervention\Image\ImageManagerStatic;
-
-
 class storeProducts extends Controller
 {
     public function home(){
@@ -35,10 +35,6 @@ class storeProducts extends Controller
     }
     public function store(Request $request){
         
-        // $img=Image::make( $key);
-        // dd($key);
-        // $img->insert(public_path('logo/logo.png'), 'bottom-right', 10, 10)->save();
-        
         $request->validate([
             'name'=>['required'],   
             'quantity'=>['required'], 
@@ -47,23 +43,31 @@ class storeProducts extends Controller
             
             
         ]);
-        $filename=time().'.'.$request->file('picture')->extension();
+        // $filename=time().'.'.$request->file('picture')->extension();
         
-        $path=$request->file('picture')->storeAs(
-           'Products',$filename,'public'
-         );
-       $prod= prod::create([
-           'name'=>$request->name,
-           'quantity'=>$request->quantity,
-           'price'=>$request->price,
-           'bought_day'=>$request->date,
-           'desc'=>$request->desc,
+        // $path=$request->file('picture')->storeAs(
+        //    'Products',$filename,'public'
+        // );
+        $image = $request->file('picture');
+        $input['picture'] = time().'.'.$image->getClientOriginalExtension();
+        $destinationPath = public_path('\storage\Products');
+        $img=Image::make( $image->getRealPath());
+        $img->insert(public_path('storage\logo\logo.png'), 'bottom-right', 10, 10)->save($destinationPath.'/'.$input['picture']);
+        
+        $prod= prod::create([
+            'name'=>$request->name,
+            'quantity'=>$request->quantity,
+            'price'=>$request->price,
+            'bought_day'=>$request->date,
+            'desc'=>$request->desc,
         ]);
         
         $image= new productsImage();
-        $image->path=$path;
+        $image->path="Products/".$input['picture'];
+        
         
         $prod->product()->save($image);
+
         return redirect('/',302);
     }
     public function delete($id){
