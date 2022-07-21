@@ -1,0 +1,12 @@
+Hello,
+
+i am new to Laravel and this is my first project using this framework 
+
+this project is a basic CRUD app which manages products in an organization
+
+products can be stored with the price , image , quantity, the day it was purchased , the description and the image of the product
+
+
+the main data is made up of two main table which are products and products_images
+
+the two tables have a 1-to-1 relationship with one another
