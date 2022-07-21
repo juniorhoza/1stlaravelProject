@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.1
+- https://www.phpmyadmin.net
+-
+- Host: 127.0.0.1
+- Generation Time: Jul 21, 2022 at 08:42 AM
+- Server version: 10.4.22-MariaDB
+- PHP Version: 8.1.2
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="products" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="failed_jobs">
+                CREATE TABLE `failed_jobs` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="migrations">
+                CREATE TABLE `migrations` (
+                  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `batch` int(11) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="password_resets">
+                CREATE TABLE `password_resets` (
+                  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  KEY `password_resets_email_index` (`email`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="personal_access_tokens">
+                CREATE TABLE `personal_access_tokens` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `tokenable_type` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `tokenable_id` bigint(20) unsigned NOT NULL,
+                  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `token` varchar(64) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `abilities` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                  `last_used_at` timestamp NULL DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+                  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="products">
+                CREATE TABLE `products` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `name` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `quantity` int(10) unsigned NOT NULL,
+                  `price` bigint(20) NOT NULL,
+                  `bought_day` date NOT NULL,
+                  `desc` text COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="products_images">
+                CREATE TABLE `products_images` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `path` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  `products_id` bigint(20) unsigned NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `products_images_products_id_foreign` (`products_id`),
+                  CONSTRAINT `products_images_products_id_foreign` FOREIGN KEY (`products_id`) REFERENCES `products` (`id`) ON DELETE CASCADE
+                ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="users">
+                CREATE TABLE `users` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `email_verified_at` timestamp NULL DEFAULT NULL,
+                  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+                  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `users_email_unique` (`email`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Database: 'products'
+    -->
+    <database name="products">
+        <!-- Table failed_jobs -->
+        <!-- Table migrations -->
+        <table name="migrations">
+            <column name="id">37</column>
+            <column name="migration">2014_10_12_000000_create_users_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">38</column>
+            <column name="migration">2014_10_12_100000_create_password_resets_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">39</column>
+            <column name="migration">2019_08_19_000000_create_failed_jobs_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">40</column>
+            <column name="migration">2019_12_14_000001_create_personal_access_tokens_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">41</column>
+            <column name="migration">2022_07_15_141901_create_products_table</column>
+            <column name="batch">1</column>
+        </table>
+        <table name="migrations">
+            <column name="id">42</column>
+            <column name="migration">2022_07_15_170348_create_products_images_table</column>
+            <column name="batch">1</column>
+        </table>
+        <!-- Table password_resets -->
+        <!-- Table personal_access_tokens -->
+        <!-- Table products -->
+        <table name="products">
+            <column name="id">8</column>
+            <column name="name">hlfj</column>
+            <column name="quantity">1</column>
+            <column name="price">900000000000</column>
+            <column name="bought_day">2022-06-27</column>
+            <column name="desc">hoza junior hehehehehe</column>
+            <column name="created_at">2022-07-20 09:18:16</column>
+            <column name="updated_at">2022-07-20 09:18:16</column>
+        </table>
+        <!-- Table products_images -->
+        <table name="products_images">
+            <column name="id">8</column>
+            <column name="path">Products/1658308692.png</column>
+            <column name="created_at">2022-07-20 09:18:19</column>
+            <column name="updated_at">2022-07-20 09:18:19</column>
+            <column name="products_id">8</column>
+        </table>
+        <!-- Table users -->
+    </database>
+</pma_xml_export>
