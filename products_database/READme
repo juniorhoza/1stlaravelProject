@@ -1,0 +1,24 @@
+happy to see you again
+
+so! in this folder you can see the database use to build this project
+
+the database has been exported  in different formats , so choose the one you feel more comfortable .
+
+as it has been said in the initial readme file ,
+
+the two main tables used for this project are Products and Products_images
+
+the products table contains the name of the product, the price, the quantity, the description of the product and the day the product was purchased
+
+on the other hand the Products_images table contain the image of a particular product  and a foreign_id which is used to identify a product
+
+the two tables have a one-to-one relationship : this means that a product  in the products table  is linked to only one image in the product images table
+
+the two databases react to changes which is means that if a product is deleted , the corresponding entry in the product_images table will be deleted equally 
+
+
+Thank you for reading through this file
+
+if you have any question about this project you can email me and i will do my best to provide a good respond to your question
+
+my email: juniorhoza56@gmail.com
