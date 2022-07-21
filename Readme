@@ -10,3 +10,7 @@ products can be stored with the price , image , quantity, the day it was purchas
 the main data is made up of two main table which are products and products_images
 
 the two tables have a 1-to-1 relationship with one another
+
+a folder calles Products_Database contains the database use to build this project
+
+see you there!!
